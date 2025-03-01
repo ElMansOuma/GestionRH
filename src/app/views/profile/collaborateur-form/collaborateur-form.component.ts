@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Collaborateur } from '../../../models/collaborateur.model';
+import {CollaborateurService} from "../../../src/app/shared/services/collaborateur.service";
 
 @Component({
     selector: 'app-collaborateur-form',
@@ -13,13 +14,14 @@ export class CollaborateurFormComponent {
     isEditing: boolean;
 
     // Options pour les menus déroulants
-    niveauxEtude: string[] = ['Bac+5', 'Bac+2', 'Doctorat', 'Autres']; // Correction de l'option Bac+5 répétée
+    niveauxEtude: string[] = ['Bac+5', 'Bac+2', 'Doctorat', 'Autres'];
     specialites: string[] = ['Informatique', 'Gestion', 'Marketing', 'Ressources Humaines', 'Autres'];
 
     constructor(
         private fb: FormBuilder,
         public dialogRef: MatDialogRef<CollaborateurFormComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: { collaborateur: Collaborateur, isEditing: boolean }
+        @Inject(MAT_DIALOG_DATA) public data: { collaborateur: Collaborateur, isEditing: boolean },
+        private collaborateurService: CollaborateurService
     ) {
         this.isEditing = data.isEditing;
         // Initialisation du formulaire avec des valeurs par défaut si pas de collaborateur
@@ -29,6 +31,10 @@ export class CollaborateurFormComponent {
             cin: [data.collaborateur?.cin || '', Validators.required],
             dateNaissance: [data.collaborateur?.dateNaissance || '', Validators.required],
             lieuNaissance: [data.collaborateur?.lieuNaissance || '', Validators.required],
+            // Ajout des champs manquants pour correspondre au modèle
+            adresseDomicile: [data.collaborateur?.adresseDomicile || ''],
+            cnss: [data.collaborateur?.cnss || ''],
+            origine: [data.collaborateur?.origine || ''],
             niveauEtude: [data.collaborateur?.niveauEtude || '', Validators.required],
             specialite: [data.collaborateur?.specialite || '', Validators.required],
             dateEntretien: [data.collaborateur?.dateEntretien || '', Validators.required],
@@ -40,16 +46,45 @@ export class CollaborateurFormComponent {
     // Soumission du formulaire
     submitForm(): void {
         if (this.collaborateurForm.valid) {
-            this.onSubmit();
+            const collaborateurData: Collaborateur = this.collaborateurForm.value;
+            if (this.isEditing && this.data.collaborateur?.id) {
+                this.collaborateurService.updateCollaborateur(this.data.collaborateur.id.toString(), collaborateurData)
+                    .subscribe({
+                        next: (response) => {
+                            console.log('Collaborateur mis à jour avec succès:', response);
+                            this.dialogRef.close(response);
+                        },
+                        error: (error) => {
+                            console.error('Erreur lors de la mise à jour:', error);
+                        }
+                    });
+            } else {
+                this.collaborateurService.addCollaborateur(collaborateurData)
+                    .subscribe({
+                        next: (response) => {
+                            console.log('Collaborateur ajouté avec succès:', response);
+                            this.dialogRef.close(response);
+                        },
+                        error: (error) => {
+                            console.error('Erreur lors de l\'ajout:', error);
+                        }
+                    });
+            }
         } else {
+            // Marquer tous les champs comme touchés pour afficher les erreurs de validation
+            this.markFormGroupTouched(this.collaborateurForm);
             console.log('Formulaire invalide:', this.collaborateurForm.errors);
         }
     }
 
-    // Envoi des données et fermeture de la boîte de dialogue
-    onSubmit(): void {
-        console.log('Données du formulaire:', this.collaborateurForm.value);
-        this.dialogRef.close(this.collaborateurForm.value);
+    // Utilitaire pour marquer tous les champs comme touchés
+    markFormGroupTouched(formGroup: FormGroup) {
+        Object.values(formGroup.controls).forEach(control => {
+            control.markAsTouched();
+            if (control instanceof FormGroup) {
+                this.markFormGroupTouched(control);
+            }
+        });
     }
 
     onCancel(): void {

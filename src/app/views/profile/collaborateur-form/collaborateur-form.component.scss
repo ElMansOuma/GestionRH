@@ -1,95 +1,123 @@
-/* Styles globaux pour le formulaire */
 .form-container {
-  max-width: 800px; /* Augmenter la largeur pour accommoder deux colonnes */
-  margin: auto;
-  background: #f9f9f9;
+  max-height: 80vh; // Hauteur maximale de 80% de la hauteur de la fenêtre
+  overflow-y: auto; // Active le défilement vertical
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.form-title {
-  text-align: center;
-  color: #333;
-  font-size: 24px;
-  margin-bottom: 20px;
+.form-content {
+  width: 100%;
+}
+
+.form-columns {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.form-column {
+  flex: 1;
+  min-width: 0; // Empêche les colonnes de dépasser
 }
 
 .section-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-/* Conteneur pour les deux colonnes */
-.form-columns {
-  display: flex;
-  gap: 20px; /* Espace entre les colonnes */
-}
-
-/* Style pour chaque colonne */
-.form-column {
-  flex: 1; /* Chaque colonne prend la moitié de l'espace disponible */
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
 }
 
 .form-group {
   margin-bottom: 15px;
-}
 
-label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
-}
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
 
-input, select, textarea {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-}
+  input, select, textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
 
-textarea {
-  resize: vertical;
-}
+  textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
 
-.error-message {
-  color: red;
-  font-size: 12px;
-  margin-top: 5px;
+  .error-message {
+    display: block;
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: 4px;
+  }
 }
 
 .form-actions {
   display: flex;
-  justify-content: flex-end; /* Aligner les boutons à droite */
-  gap: 10px; /* Espace entre les boutons */
+  justify-content: flex-end;
+  gap: 10px;
   margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+
+  button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &.cancel-button {
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      color: #333;
+
+      &:hover {
+        background-color: #e0e0e0;
+      }
+    }
+
+    &.submit-button {
+      background-color: #1976d2;
+      border: none;
+      color: white;
+
+      &:hover {
+        background-color: #1565c0;
+      }
+
+      &:disabled {
+        background-color: #bbdefb;
+        cursor: not-allowed;
+      }
+    }
+  }
 }
 
-button {
-  padding: 10px 15px;
-  border: none;
+// Pour améliorer l'apparence du scroll
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
   border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
 }
 
-.cancel-button {
-  background: #ff4d4d;
-  color: white;
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
 }
 
-.submit-button {
-  background: #28a745;
-  color: white;
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
-button:disabled {
-  background: #bae7ff;
-  cursor: not-allowed;
+::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
 }

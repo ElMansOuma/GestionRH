@@ -9,37 +9,50 @@
                 <div class="form-group">
                     <label for="nom">Nom :</label>
                     <input id="nom" formControlName="nom" type="text" placeholder="Nom" required>
-                    <span class="error-message" *ngIf="collaborateurForm.get('nom')?.hasError('required')">
+                    <span class="error-message" *ngIf="collaborateurForm.get('nom')?.invalid && collaborateurForm.get('nom')?.touched">
                         Nom est requis.
                     </span>
                 </div>
                 <div class="form-group">
                     <label for="prenom">Prénom :</label>
                     <input id="prenom" formControlName="prenom" type="text" placeholder="Prénom" required>
-                    <span class="error-message" *ngIf="collaborateurForm.get('prenom')?.hasError('required')">
+                    <span class="error-message" *ngIf="collaborateurForm.get('prenom')?.invalid && collaborateurForm.get('prenom')?.touched">
                         Prénom est requis.
                     </span>
                 </div>
                 <div class="form-group">
                     <label for="cin">CIN :</label>
                     <input id="cin" formControlName="cin" type="text" placeholder="CIN" required>
-                    <span class="error-message" *ngIf="collaborateurForm.get('cin')?.hasError('required')">
+                    <span class="error-message" *ngIf="collaborateurForm.get('cin')?.invalid && collaborateurForm.get('cin')?.touched">
                         CIN est requis.
                     </span>
                 </div>
                 <div class="form-group">
                     <label for="dateNaissance">Date de naissance :</label>
                     <input id="dateNaissance" formControlName="dateNaissance" type="date" required>
-                    <span class="error-message" *ngIf="collaborateurForm.get('dateNaissance')?.hasError('required')">
+                    <span class="error-message" *ngIf="collaborateurForm.get('dateNaissance')?.invalid && collaborateurForm.get('dateNaissance')?.touched">
                         Date de naissance est requise.
                     </span>
                 </div>
                 <div class="form-group">
                     <label for="lieuNaissance">Lieu de naissance :</label>
                     <input id="lieuNaissance" formControlName="lieuNaissance" type="text" placeholder="Lieu de naissance" required>
-                    <span class="error-message" *ngIf="collaborateurForm.get('lieuNaissance')?.hasError('required')">
+                    <span class="error-message" *ngIf="collaborateurForm.get('lieuNaissance')?.invalid && collaborateurForm.get('lieuNaissance')?.touched">
                         Lieu de naissance est requis.
                     </span>
+                </div>
+                <!-- Ajout des champs manquants -->
+                <div class="form-group">
+                    <label for="adresseDomicile">Adresse domicile :</label>
+                    <input id="adresseDomicile" formControlName="adresseDomicile" type="text" placeholder="Adresse domicile">
+                </div>
+                <div class="form-group">
+                    <label for="cnss">CNSS :</label>
+                    <input id="cnss" formControlName="cnss" type="text" placeholder="CNSS">
+                </div>
+                <div class="form-group">
+                    <label for="origine">Origine :</label>
+                    <input id="origine" formControlName="origine" type="text" placeholder="Origine">
                 </div>
             </div>
 
@@ -48,35 +61,35 @@
                 <h3 class="section-title">Informations Professionnelles</h3>
                 <div class="form-group">
                     <label for="niveauEtude">Niveau d'étude :</label>
-                    <select id="niveauEtude" formControlName="niveauEtude">
+                    <select id="niveauEtude" formControlName="niveauEtude" required>
                         <option value="">Sélectionnez un niveau</option>
                         <option *ngFor="let niveau of niveauxEtude" [value]="niveau">{{ niveau }}</option>
                     </select>
-                    <span class="error-message" *ngIf="collaborateurForm.get('niveauEtude')?.hasError('required')">
+                    <span class="error-message" *ngIf="collaborateurForm.get('niveauEtude')?.invalid && collaborateurForm.get('niveauEtude')?.touched">
                         Niveau d'étude est requis.
                     </span>
                 </div>
                 <div class="form-group">
                     <label for="specialite">Spécialité :</label>
-                    <select id="specialite" formControlName="specialite">
+                    <select id="specialite" formControlName="specialite" required>
                         <option value="">Sélectionnez une spécialité</option>
                         <option *ngFor="let specialite of specialites" [value]="specialite">{{ specialite }}</option>
                     </select>
-                    <span class="error-message" *ngIf="collaborateurForm.get('specialite')?.hasError('required')">
+                    <span class="error-message" *ngIf="collaborateurForm.get('specialite')?.invalid && collaborateurForm.get('specialite')?.touched">
                         Spécialité est requise.
                     </span>
                 </div>
                 <div class="form-group">
                     <label for="dateEntretien">Date de l'entretien :</label>
                     <input id="dateEntretien" formControlName="dateEntretien" type="date" required>
-                    <span class="error-message" *ngIf="collaborateurForm.get('dateEntretien')?.hasError('required')">
+                    <span class="error-message" *ngIf="collaborateurForm.get('dateEntretien')?.invalid && collaborateurForm.get('dateEntretien')?.touched">
                         Date de l'entretien est requise.
                     </span>
                 </div>
                 <div class="form-group">
                     <label for="dateEmbauche">Date d'embauche :</label>
                     <input id="dateEmbauche" formControlName="dateEmbauche" type="date" required>
-                    <span class="error-message" *ngIf="collaborateurForm.get('dateEmbauche')?.hasError('required')">
+                    <span class="error-message" *ngIf="collaborateurForm.get('dateEmbauche')?.invalid && collaborateurForm.get('dateEmbauche')?.touched">
                         Date d'embauche est requise.
                     </span>
                 </div>
@@ -90,7 +103,7 @@
         <!-- Actions du formulaire -->
         <div class="form-actions">
             <button type="button" class="cancel-button" (click)="onCancel()">Annuler</button>
-            <button type="submit" class="submit-button" [disabled]="collaborateurForm.invalid">
+            <button type="submit" class="submit-button">
                 {{ isEditing ? 'Mettre à jour' : 'Enregistrer' }}
             </button>
         </div>
