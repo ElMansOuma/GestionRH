@@ -1,0 +1,95 @@
+/* Styles globaux pour le formulaire */
+.form-container {
+  max-width: 800px; /* Augmenter la largeur pour accommoder deux colonnes */
+  margin: auto;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Conteneur pour les deux colonnes */
+.form-columns {
+  display: flex;
+  gap: 20px; /* Espace entre les colonnes */
+}
+
+/* Style pour chaque colonne */
+.form-column {
+  flex: 1; /* Chaque colonne prend la moitié de l'espace disponible */
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end; /* Aligner les boutons à droite */
+  gap: 10px; /* Espace entre les boutons */
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background: #ff4d4d;
+  color: white;
+}
+
+.submit-button {
+  background: #28a745;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:disabled {
+  background: #bae7ff;
+  cursor: not-allowed;
+}

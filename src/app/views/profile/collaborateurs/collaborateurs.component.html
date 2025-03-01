@@ -1,0 +1,54 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Gestion des Collaborateurs</h2>
+
+    <div class="text-end mb-3">
+        <button mat-raised-button color="primary" class="custom-button" (click)="openDialog()">
+            <mat-icon>add</mat-icon> Ajouter un Collaborateur
+        </button>
+    </div>
+
+    <!-- Tableau des collaborateurs -->
+    <mat-card>
+        <table mat-table [dataSource]="collaborateurs" class="mat-elevation-z8">
+            <!-- Colonne Nom -->
+            <ng-container matColumnDef="nom">
+                <th mat-header-cell *matHeaderCellDef>Nom</th>
+                <td mat-cell *matCellDef="let collaborateur">{{ collaborateur.nom }}</td>
+            </ng-container>
+
+            <!-- Colonne Prénom -->
+            <ng-container matColumnDef="prenom">
+                <th mat-header-cell *matHeaderCellDef>Prénom</th>
+                <td mat-cell *matCellDef="let collaborateur">{{ collaborateur.prenom }}</td>
+            </ng-container>
+
+            <!-- Colonne CIN -->
+            <ng-container matColumnDef="cin">
+                <th mat-header-cell *matHeaderCellDef>CIN</th>
+                <td mat-cell *matCellDef="let collaborateur">{{ collaborateur.cin }}</td>
+            </ng-container>
+
+            <!-- Colonne Actions -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let collaborateur">
+                    <!-- Bouton Éditer (couleur verte) -->
+                    <button mat-icon-button (click)="openDialog(collaborateur)" class="edit-button">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+
+                    <!-- Bouton Supprimer (couleur rouge) -->
+                    <button mat-icon-button (click)="deleteCollaborateur(collaborateur.id)" class="delete-button">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <!-- Ligne d'en-tête -->
+            <tr mat-header-row *matHeaderRowDef="['nom', 'prenom', 'cin', 'actions']"></tr>
+
+            <!-- Lignes de données -->
+            <tr mat-row *matRowDef="let row; columns: ['nom', 'prenom', 'cin', 'actions'];"></tr>
+        </table>
+    </mat-card>
+</div>

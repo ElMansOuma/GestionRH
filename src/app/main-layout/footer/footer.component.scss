@@ -1,0 +1,31 @@
+footer {
+  background-color: #2C3E50 !important; /* Assure que la couleur s'applique au footer */
+  color: #fff; /* Texte en blanc */
+}
+
+footer a {
+  color: #fff; /* Lien en blanc */
+}
+
+footer a:hover {
+  color: #3498DB; /* Lien en bleu clair au survol */
+}
+
+footer .btn-outline-white {
+  border-color: #fff;
+  color: #fff;
+}
+
+footer .btn-outline-white:hover {
+  background-color: #3498DB; /* Bleu clair au survol */
+  color: #fff;
+}
+
+/* Social Icons */
+footer .pb-4 a {
+  color: #fff;
+}
+
+footer .pb-4 a:hover {
+  color: #3498DB; /* Bleu clair au survol */
+}

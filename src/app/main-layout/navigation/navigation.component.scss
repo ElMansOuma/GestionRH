@@ -1,0 +1,106 @@
+/* Améliorations pour un design élégant */
+
+/* Sidebar */
+.sidebar-fixed {
+  height: 100vh;
+  width: 270px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 2px 10px rgba(0, 0, 0, 0.15);
+  z-index: 1050;
+  background-color: #2C3E50; /* Bleu foncé élégant */
+  padding: 1.5rem;
+  padding-top: 0;
+}
+
+.sidebar-fixed .logo-wrapper {
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.sidebar-fixed .logo-wrapper img {
+  max-height: 50px;
+}
+
+/* List items */
+.sidebar-fixed .list-group .list-group-item {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+}
+
+.sidebar-fixed .list-group .list-group-item:hover {
+  background-color: #34495E; /* Bleu clair au survol */
+  color: #fff;
+  transform: scale(1.05);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #2C3E50;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-nav .nav-link {
+  color: #2C3E50; /* Texte en bleu foncé */
+  font-weight: bold;
+  padding: 0.75rem 1.25rem;
+  border-radius: 5px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #2C3E50; /* Changement de couleur au survol */
+  transform: scale(1.1);
+}
+
+/* Social Icons */
+.navbar-nav .nav-item a {
+  color: #2C3E50;
+  transition: transform 0.3s ease;
+}
+
+.navbar-nav .nav-item a:hover {
+  transform: scale(1.2); /* Augmente la taille au survol */
+  color: #2C3E50; /* Bleu clair pour les icônes sociales */
+}
+
+/* Responsive */
+@media (max-width: 1199.98px) {
+  .sidebar-fixed {
+    display: none;
+  }
+}
+
+/* Customizing Active State for Links */
+.list-group-item.active {
+  background-color: #2C3E50; /* Bleu clair pour l'élément actif */
+  color: #fff;
+  border-radius: 5px;
+}
+/* Social Icons */
+.navbar-nav .nav-item a {
+  color: #fff; /* Couleur blanche pour les icônes */
+  background-color: #2C3E50; /* Fond bleu foncé pour plus de visibilité */
+  padding: 5px; /* Réduire encore l'espace autour de l'icône */
+  border-radius: 50%; /* Rendre les icônes circulaires */
+  transition: all 0.3s ease; /* Transition fluide */
+  font-size: 1rem; /* Taille des icônes plus petite */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Ombre plus discrète */
+}
+
+.navbar-nav .nav-item a:hover {
+  background-color: #3d5d75; /* Bleu clair au survol */
+  color: #fff; /* Reste blanc pour le texte */
+  transform: scale(1.1); /* Agrandir l'icône au survol */
+  box-shadow: 0 3px 6px rgba(52, 152, 219, 0.3); /* Ombre plus subtile au survol */
+}
+
+/* Social Icons (environnement mobile) */
+@media (max-width: 1199.98px) {
+  .navbar-nav .nav-item a {
+    padding: 3px; /* Réduire l'espace encore plus sur mobile */
+    font-size: 0.9rem; /* Taille encore plus petite sur mobile */
+  }
+}
